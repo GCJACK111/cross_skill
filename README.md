@@ -5,17 +5,20 @@
 ### 从多篇论文中看见研究思路分布，并把证据组织成科学问题与 Introduction
 
 <p>
-  <img alt="Stage" src="https://img.shields.io/badge/Stage-Prototype-9d72ef">
+  <img alt="Version" src="https://img.shields.io/badge/Version-2.0.0-2f6f4f">
+  <img alt="Stage" src="https://img.shields.io/badge/Stage-Stable-9d72ef">
   <img alt="Focus" src="https://img.shields.io/badge/Focus-Multi--Paper%20Synthesis-4d8dff">
   <img alt="Method" src="https://img.shields.io/badge/Method-5%20Specialized%20Roles-42a883">
-  <img alt="Output" src="https://img.shields.io/badge/Output-Research%20Map%20%2B%20Introduction-d39a55">
+  <img alt="Output" src="https://img.shields.io/badge/Output-PDF%20%2B%20LaTeX%20Figure-d39a55">
 </p>
 
 </div>
 
-**读完一组同主题论文，不只得到摘要，而是得到可比较、可验证、可继续写作的研究地图。**
+**读完一组同主题论文，不只得到摘要，而是得到可比较、可验证、可继续写作的研究地图，以及一份可直接投稿引用的 PDF。**
 
-`purpose-driven-introduction` 是一个多篇文献横向综合 skill。它通过 5 个分工角色建立“文献 × 研究思路”证据矩阵，默认首先展示当前论文的思路覆盖率分布图，再归纳共同科学问题、已有答案、剩余问题和后续研究建议，按需生成 Introduction 主线与逐段提纲。
+`purpose-driven-introduction` 是一个多篇文献横向综合 skill。它通过 5 个分工角色建立“文献 × 研究思路”证据矩阵，默认首先展示当前论文的思路覆盖率分布图，再归纳共同科学问题、已有答案、剩余问题和后续研究建议，按需生成 Introduction 主线与逐段提纲，最后落一份论文样式的 PDF 报告。
+
+分布图按论文插图规格绘制，同时产出位图 PNG、矢量 PDF 与 PGFPlots 源（`.tex`），三种格式来自同一次计算。
 
 > 适用于多篇论文的横向综合，不用于单篇精读。覆盖率描述本批论文的分布，不是创新概率或研究成功概率。
 
@@ -24,18 +27,19 @@
 将整个 `purpose-driven-introduction/` 目录安装到客户端的 skills 目录，重新加载 skills，然后上传同主题论文并输入：
 
 ```text
-请使用 purpose-driven-introduction 分析这些论文。
+请使用 purpose-driven-introduction 分析这些论文，并输出 PDF 报告。
 我的研究目的是：……
 ```
 
 默认得到：
 
-1. 当前论文研究思路分布图；
+1. 当前论文研究思路分布图（LaTeX 风格，PNG + 矢量 PDF + `.tex` 源）；
 2. 常用与较少采用的思路及其具体处理方式；
 3. 共同科学问题、各路线已有答案与剩余问题；
 4. 2—3 条有依据、可检验的后续研究建议；
 5. 简洁的文献 × 研究思路证据矩阵；
-6. Introduction 主线与逐段结构（按需）。
+6. Introduction 主线与逐段结构（按需）；
+7. 一份论文样式的 PDF 报告。
 
 不同客户端的 skills 目录和加载方式可能不同，请以所用客户端的说明为准，并确保 `SKILL.md` 位于 skill 目录根目录。
 
@@ -67,6 +71,8 @@
 04 后续研究建议：新增考虑、验证方式、边界风险
       ↓
 05 Introduction 组织（按需）：主线与逐段结构
+      ↓
+06 报告构建：论文样式 DOCX → PDF
 ```
 
 “分布图最先出现”指**回复的展示顺序**。实际运行时必须读完论文、完成去重并建立矩阵后才能绘图，不能为了先出图而猜分类或数值。
@@ -101,7 +107,7 @@
 
 **输出形态**
 
-> 分布图 → 常用／低频思路 → 科学问题 → 研究建议 → 证据矩阵。
+> 分布图 → 常用／低频思路 → 科学问题 → 研究建议 → 证据矩阵 → PDF 报告。
 
 ### 示例二：从研究地图到 Introduction
 
@@ -127,7 +133,8 @@
 - **主控 skill**：默认入口、角色调用顺序、证据规则和输出要求；
 - **5 个角色契约**：分别负责证据、分布、科学问题、建议和引言；
 - **参考分布图与示例数据**：用于说明样式，不参与实际统计；
-- **可复用绘图脚本**：从当前矩阵对应的 JSON 生成横向条形图；
+- **绘图脚本**：一次生成 PNG、矢量 PDF 与 PGFPlots 源三份图；
+- **报告构建脚本**：把分析内容排成论文样式 DOCX 并转为 PDF；
 - **输出模板**：统一分布、科学问题、建议、矩阵与引言的交付顺序。
 
 ## 仓库结构
@@ -138,8 +145,8 @@ purpose-driven-introduction/
 ├── SKILL.md                              ← 主控 skill 完整执行规范
 ├── agents/                               ← 5 个角色契约与协作说明
 ├── assets/                               ← 参考图、示例 JSON 与资源说明
-├── references/                           ← 默认输出模板
-└── scripts/                              ← 分布图绘制脚本
+├── references/                           ← 输出模板与报告 JSON 结构
+└── scripts/                              ← 绘图、报告构建与依赖清单
 ```
 
 ## 使用场景
@@ -147,7 +154,7 @@ purpose-driven-introduction/
 ### 完整横向综合
 
 ```text
-请使用 purpose-driven-introduction 分析这些论文。
+请使用 purpose-driven-introduction 分析这些论文，并输出 PDF 报告。
 我的研究目的是：……
 ```
 
@@ -196,13 +203,27 @@ purpose-driven-introduction/
 - [查看绘图脚本](scripts/plot_distribution.py)
 - [查看 JSON 输入示例](assets/reference-distribution.json)
 
-绘图脚本需要 Python 和 Matplotlib：
+绘图脚本按论文插图规格出图（衬线字体、单一色相按深浅区分数值、无网格），并一次生成三种格式：
 
 ```bash
-python scripts/plot_distribution.py input.json output.png
+# PNG（600 dpi，插入报告） + 矢量 PDF（插入论文） + PGFPlots 源（xelatex 编译）
+python scripts/plot_distribution.py input.json figure.png --format all
 ```
 
-`sample_size` 是去重后的独立论文数，`count` 必须来自当前证据矩阵。图、表和正文必须使用同一份统计结果。
+`sample_size` 是去重后的独立论文数，`count` 必须来自当前证据矩阵。图、表和正文必须使用同一份统计结果。标题会自动补 `（N = x）`，不要重复写 N；标题里的 N 与 `sample_size` 不一致时脚本直接报错。
+
+## 生成论文样式 PDF 报告
+
+```bash
+pip install -r scripts/requirements.txt
+python scripts/build_report.py report.json -o report.docx --pdf
+```
+
+报告 JSON 只写内容（标题、章节、图、表），版式由脚本固定：A4、宋体五号、1.5 倍行距、首行缩进、三线表、图注在下、表注在上、页脚页码。结构说明见 [报告 JSON 结构](references/report-spec.md)。
+
+PDF 转换优先使用本机 LibreOffice Kit（`--kit-cli` / `--kit-node`，或环境变量 `DSH_LIBREOFFICE_KIT_CLI` / `DSH_LIBREOFFICE_KIT_NODE`），其次系统 `soffice`；两者都没有时保留 DOCX 并说明原因，不会伪造 PDF。
+
+如果只想要 LaTeX 排版，直接用 `figure.tex` 配合 `\\includegraphics{figure.pdf}` 或 `\\input{figure.tex}`，中文用 `ctex` 或 `xeCJK`，用 `xelatex` 编译。
 
 ## 建议提供的材料
 
@@ -214,4 +235,6 @@ python scripts/plot_distribution.py input.json output.png
 
 ## 当前状态
 
-当前版本是结构完整的雏形，已经形成“主控 skill + 5 个角色契约 + 参考资源 + 绘图脚本 + 输出模板”。后续仍需通过多组真实文献测试分类稳定性、证据归属、分布计算和研究建议质量，再依据测试结果迭代。
+当前版本 2.0.0，已形成“主控 skill + 5 个角色契约 + 参考资源 + 绘图脚本 + 报告构建 + 输出模板”的完整链路。论文样式 PDF 与 LaTeX 风格图表可用，并已用 23 篇真实文献端到端验证。后续仍需通过更多组文献测试分类稳定性、证据归属、分布计算和研究建议质量，再依据测试结果迭代。
+
+变更记录见 [CHANGELOG.md](CHANGELOG.md)。
