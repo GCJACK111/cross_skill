@@ -1,6 +1,6 @@
 <div align="center">
 
-# Purpose-Driven Introduction
+# 横向SKILL
 
 ### 从多篇论文中看见研究思路分布，并把证据组织成科学问题与 Introduction
 
