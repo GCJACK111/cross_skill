@@ -1,6 +1,19 @@
-# purpose-driven-introduction
+<div align="center">
+
+# Purpose-Driven Introduction
 
 ### 从多篇论文中看见研究思路分布，并把证据组织成科学问题与 Introduction
+
+<p>
+  <img alt="Stage" src="https://img.shields.io/badge/Stage-Prototype-9d72ef">
+  <img alt="Focus" src="https://img.shields.io/badge/Focus-Multi--Paper%20Synthesis-4d8dff">
+  <img alt="Method" src="https://img.shields.io/badge/Method-5%20Specialized%20Roles-42a883">
+  <img alt="Output" src="https://img.shields.io/badge/Output-Research%20Map%20%2B%20Introduction-d39a55">
+</p>
+
+<img src="assets/workflow-banner.svg" alt="Purpose-Driven Introduction：从证据提取、思路分布、科学问题、研究建议到 Introduction 的工作流程" width="100%">
+
+</div>
 
 **读完一组同主题论文，不只得到摘要，而是得到可比较、可验证、可继续写作的研究地图。**
 
