@@ -1,0 +1,20 @@
+# Runtime dependencies for the purpose-driven-introduction scripts.
+# Install with:  pip install -r requirements.txt
+#
+# Python 3.9+ is required.
+
+# Coverage figure (scripts/plot_distribution.py).
+# PNG / vector PDF / PGFPlots source all come from this single dependency.
+matplotlib>=3.6
+
+# PDF text extraction (reading the supplied papers before analysis).
+# The skill itself does not call it, but every run starts by reading PDFs.
+pypdf>=4.0
+
+# Paper-styled DOCX report (scripts/build_report.py).
+python-docx>=1.1
+
+# PDF conversion:
+#   * bundled LibreOffice Kit CLI (see --kit-cli / --kit-node), or
+#   * a system LibreOffice / soffice on PATH.
+# Neither is a Python package; install LibreOffice if no kit is available.
