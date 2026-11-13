@@ -7,17 +7,13 @@ one place and the layout stays reproducible.
 Spec
 ----
 {
-  "title": "城市建筑表面光伏潜力评估：23 篇文献横向综合",
-  "subtitle": "横向 skill 试跑记录",
-  "meta": ["材料：/path/to/papers", "生成日期：2026-11-11"],
+  "title": "城市建筑太阳能潜力评估文献综合",
   "sections": [
-    {"heading": "1  材料范围与统计口径", "items": ["..."]},            # bullets
-    {"heading": "2  研究思路分布", "type": "figure",
-     "image": "figure.png", "caption": "图 1  研究思路覆盖率分布（N = 23）", "width_cm": 15},
-    {"heading": "3  分布解读", "type": "paragraphs", "items": ["..."]},
-    {"heading": "3.1  常用路线", "level": 2, "type": "paragraphs", "items": ["..."]},
-    {"heading": "4  证据矩阵", "type": "table", "caption": "表 1  文献 × 研究思路",
-     "header": ["编号", "文献", "路线 A"], "rows": [["01", "…", "1"]], "font_size": 8.5}
+    {"heading": "1  研究思路覆盖率分布图", "type": "figure",
+     "image": "figure.png", "caption": "图 1  研究思路覆盖率分布（N = 20）", "width_cm": 15},
+    {"heading": "2  Introduction 完整写法思路", "type": "paragraphs",
+     "items": ["主线与逐段主题句、展开论证、文献依据及过渡句。"]},
+    {"heading": "3  主要分布与思路边界", "type": "paragraphs", "items": ["..."]}
   ]
 }
 
