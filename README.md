@@ -1,6 +1,6 @@
 # 横向 SKILL
 
-从多篇论文中归纳研究思路，围绕研究目的建立连续的 Introduction 论证，并生成完整 PDF。
+从多篇论文中归纳研究思路，围绕研究目的建立连续的 Introduction 论证，最终只交付一个完整 PDF。
 
 ## 最简使用
 
@@ -22,7 +22,7 @@
 2. **Introduction 完整写法思路**：先给一句话主线，再逐段写出主题句、展开论证、对应文献与过渡句，从背景和核心问题一直写到具体剩余问题及本文工作。
 3. **主要分布与思路边界**：说明图中各类的实际机制、已有答案、适用条件及与研究目的相关的边界。
 
-PDF 包含同样的三部分，随本轮修改同步更新。证据矩阵、关键句提取、科学问题综合和方向推演在内部完成，不另设可见章节或附录。辅助源文件默认留在内部。
+PDF 包含同样的三部分，随本轮修改同步更新。证据矩阵、关键句提取、科学问题综合和方向推演在内部完成，不另设可见章节或附录。图表全部嵌入 PDF；图片、独立图 PDF、Word、CSV、JSON、TEX 和 ZIP 留在内部，不另提供下载链接。
 
 ## Introduction 怎样保持连续
 
@@ -66,7 +66,7 @@ If a sentence serves only to preempt criticism rather than advance the argument,
 
 ```bash
 pip install -r scripts/requirements.txt
-python scripts/plot_distribution.py coverage.json figure.png --format all
+python scripts/plot_distribution.py coverage.json figure.png --format png
 python scripts/build_report.py report.json -o report.docx --pdf
 ```
 

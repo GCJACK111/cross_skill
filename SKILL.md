@@ -1,6 +1,6 @@
 ---
 name: purpose-driven-introduction
-description: 横向 skill：综合同主题的多篇论文或解读，依据用户研究目的归纳连续的 Introduction 论证。回复与 PDF 只含三部分，依次为研究思路覆盖率分布图、Introduction 完整写法思路、主要分布与思路边界；内部保留证据提取、矩阵计算与核查。不用于单篇精读。
+description: 横向 skill：综合同主题的多篇论文或解读，依据用户研究目的归纳连续的 Introduction 论证。回复与 PDF 只含三部分，依次为研究思路覆盖率分布图、Introduction 完整写法思路、主要分布与思路边界；最终只交付一个完整 PDF；内部保留证据提取、矩阵计算与核查。不用于单篇精读。
 ---
 
 # 横向 skill：根据研究目的组织多文献引言
@@ -50,13 +50,13 @@ description: 横向 skill：综合同主题的多篇论文或解读，依据用�
 
 重点句、共同科学问题、候选路线、研究建议、证据矩阵和核查记录用于内部分析，不另设可见章节、附录或清单。无需增加摘要、独立材料说明或额外结论。覆盖率不等于引言篇幅：图中每类不必各占一段，第二部分围绕共同问题选择、合并和连接相关文献。
 
-完整模板见 `references/output-template.md`。PDF 是这三部分的同版交付文件，不是第四个章节。默认提供完整 PDF；DOCX、CSV、图源等辅助产物留在内部，用户要求时再提供。
+完整模板见 `references/output-template.md`。PDF 是这三部分的同版交付文件，不是第四个章节。最终只提供 **一个完整 PDF**，三部分内容和分布图全部嵌入其中。PNG、独立矢量 PDF、DOCX、CSV、JSON、TEX 和 ZIP 均为内部中间产物，不附下载链接，不作为额外交付。
 
 ### 分布图规范与参考资源
 
 实际图必须由当前矩阵生成，不套用参考图的分类或数值。参考样式见 `assets/reference-distribution.png`，其数据为虚构示例。
 
-图按论文插图规格绘制：衬线字体、单一色相以深浅区分数值、无网格、无上/右边框、细线、横轴固定 0—100、条末标注「百分比 (篇数)」。一次生成三份文件：
+图按论文插图规格绘制：衬线字体、单一色相以深浅区分数值、无网格、无上/右边框、细线、横轴固定 0—100、条末标注「百分比 (篇数)」。内部绘图可生成以下格式，最终只把图嵌入完整报告 PDF，不单独交付图文件：
 
 | 文件 | 用途 |
 |---|---|
@@ -65,14 +65,14 @@ description: 横向 skill：综合同主题的多篇论文或解读，依据用�
 | `*.tex` | PGFPlots 源，用 `xelatex` 编译，供纯 LaTeX 排版复用 |
 
 ```bash
-python scripts/plot_distribution.py coverage.json figure.png --format all
+python scripts/plot_distribution.py coverage.json figure.png --format png
 ```
 
 标题里不要重复写 N：脚本会检查并自动补 `（N = x）`，若标题已含与 `sample_size` 不一致的 N 会直接报错。无法生成图片时，先用等宽文本横向条形图呈现相同数据，并保留百分比与篇数，不能省略首项分布。
 
 ## 论文样式 PDF 报告
 
-默认交付除对话回复外，落一份只含上述三部分的 PDF。流程固定为：矩阵 → 图（png + pdf + tex）→ 报告内容 JSON → DOCX → PDF。
+默认交付除对话回复外，落一份只含上述三部分的 PDF。内部流程为：矩阵 → 报告所需图 → 报告内容 JSON → DOCX → 完整 PDF。嵌入报告通常只需 PNG；独立矢量图与 TEX 按内部需要生成。对外仅交付最终完整 PDF。
 
 ```bash
 python scripts/build_report.py report.json -o report.docx --pdf
@@ -88,9 +88,10 @@ python scripts/build_report.py report.json -o report.docx --pdf
 
 - N 与实际纳入统计的可读独立论文一致；综述、外围材料的处理与编号缺口已在图注交代。
 - 图标题的 N = 矩阵行数；每条百分比 = 该列取 1 的篇数 ÷ N；图上数字与矩阵逐条对得上。
-- 图里没有沿用参考图的分类名或数值；三份图文件（png / pdf / tex）来自同一次计算。
+- 图里没有沿用参考图的分类名或数值；图及内部其他格式来自同一份统计结果。
 - 回复和 PDF 均只有三个一级部分，依次为分布图、Introduction 完整写法思路、主要分布与思路边界；没有另附矩阵、建议或核查清单。
 - Introduction 覆盖从背景到本文工作的完整链路，每段说明具体论证、支撑文献和承接理由；最近邻工作已纳入比较。
+- 最终附件及下载链接只有一个完整报告 PDF，没有单独图文件、DOCX、CSV、TEX 或打包文件。
 - PDF 页数完整，图、表编号连续，没有孤立在页首或页尾的图题、表题。
 - 逐句检查：只站岗、不推进论证的句子删掉。
 
