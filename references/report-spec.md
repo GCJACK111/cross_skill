@@ -1,6 +1,6 @@
 # 报告 JSON 结构
 
-`scripts/build_report.py` 读取这份 JSON，输出论文样式的 DOCX；加 `--pdf` 时再转成 PDF。内容与版式分离：作者只写文字，版式由脚本固定。
+`scripts/build_report.py` 读取这份 JSON，输出论文样式的 DOCX；加 `--pdf` 时再转成 PDF。内容与版式分离：作者只写文字，版式由脚本固定。对外只提供一个完整报告 PDF；DOCX、JSON、图文件和其他源文件都是内部中间产物，不提供额外下载链接。
 
 ## 顶层字段
 
